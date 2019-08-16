@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="comic in comicsList" :key="comic.diamond_id">
+      <li v-for="comic in filteredComicsList" :key="comic.diamond_id">
         <p>
           <strong>{{comic.title}}</strong>
           <br />
@@ -18,7 +18,8 @@ import { EventBus } from "../js/event-bus.js";
 export default {
   data() {
     return {
-      comicsList: ""
+      comicsList: [],
+      filteredComicsList: []
     };
   },
   created() {
@@ -35,16 +36,18 @@ export default {
     });
 
     EventBus.$on("filter-on-search", query => {
-      this.comicsList = comicsList.filter(function(query) {
-        return comic.title === query
+      console.log('Received filter-on-search with query: ' + query)
+      this.filteredComicsList = this.comicsList.filter(function(comic) {
+        console.log('This comic title -> ' + comic.title)
+        return comic.title.toLowerCase().includes(query.toLowerCase())
       });
-      console.log('New comicsList -> ' + comicsList)
     });
   },
   methods: {
     setComics(comics) {
       console.log("setComics called");
       this.comicsList = comics;
+      this.filteredComicsList = comics;
     }
   }
 };

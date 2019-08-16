@@ -17,7 +17,7 @@
           <a v-on:click="lastWeek" href="#" class="nav-item nav-link">Last Week</a>
           <a v-on:click="thisWeek" href="#" class="nav-item nav-link">This Week</a>
           <a v-on:click="nextWeek" href="#" class="nav-item nav-link">Next Week</a>
-          <input v-model="query" v-on:change="searchChanged" type="text" name="search" value="">
+          <input v-model="query" v-on:input="searchChanged" type="text" name="search" value="">
         </div>
       </div>
     </nav>
@@ -35,8 +35,9 @@ export default {
     }
   },
   methods: {
-    searchChanged: function() {
+    searchChanged: function(query) {
       console.log('query = ' + this.query)
+      EventBus.$emit('filter-on-search', this.query)
     },
     thisWeek: function() {
       axios
