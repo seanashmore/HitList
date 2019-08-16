@@ -17,9 +17,9 @@
           <a v-on:click="lastWeek" href="#" class="nav-item nav-link">Last Week</a>
           <a v-on:click="thisWeek" href="#" class="nav-item nav-link">This Week</a>
           <a v-on:click="nextWeek" href="#" class="nav-item nav-link">Next Week</a>
-          <input v-model="query" v-on:input="searchChanged" type="text" name="search" value="">
         </div>
       </div>
+      <input style="float: right" v-model="query" v-on:input="searchChanged" type="text" name="search" placeholder="Search...">
     </nav>
   </div>
 </template>
@@ -74,4 +74,7 @@ export default {
 </script>
 
 <style>
+  input {
+    float: right;
+  }
 </style>
