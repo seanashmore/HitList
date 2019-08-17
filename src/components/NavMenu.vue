@@ -34,6 +34,9 @@ export default {
       query: ''
     }
   },
+  created: function () {
+    this.thisWeek();
+  },
   methods: {
     searchChanged: function(query) {
       console.log('query = ' + this.query)
