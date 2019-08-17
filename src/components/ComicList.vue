@@ -1,11 +1,16 @@
 <template>
   <div>
     <ul>
+      <br />
       <li v-for="comic in filteredComicsList" :key="comic.diamond_id">
         <p>
           <strong>{{comic.title}}</strong>
+          <template v-if="comic.description !== ''">
+            <br />
+            <small>{{comic.description}}</small>
+          </template>
           <br />
-          <small>{{comic.description}}</small>
+          <small><b>Published by:</b> {{ comic.publisher }}</small>
         </p>
       </li>
     </ul>
